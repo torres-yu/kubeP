@@ -1,0 +1,55 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: demo-dep
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: demo-app
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: demo-dep
+    spec:
+      containers:
+        - name: demo-con
+          image: idock.daumkakao.io/torres_yu/demo1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: 500
+              memory: 512Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+#          readinessProbe:
+#            httpGet:
+#              path: /scheduled/start-up
+#              port: 8090
+#              scheme: HTTP
+#            initialDelaySeconds: 30
+#            periodSeconds: 5
+#            failureThreshold: 10
+#            successThreshold: 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-svc
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: demo-app
+

@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: demo-ingress
+  namespace: default
+spec:
+  rules:
+    - host: yudk.dev.daum.net
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: demo-svc
+              servicePort: 80
