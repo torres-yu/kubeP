@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: demo-yu-con
-          image: idock.daumkakao.io/torres_yu/demo1
+          image: idock.daumkakao.io/torres_yu/demo-yu-deploy
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
