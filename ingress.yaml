@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: demo-ingress
+  name: demo-yu-ingress
   namespace: default
 spec:
   rules:
@@ -10,5 +10,5 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: demo-svc
+              serviceName: demo-yu-svc
               servicePort: 80

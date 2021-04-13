@@ -1,12 +1,12 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: demo-dep
+  name: demo-yu-dep
   namespace: default
 spec:
   selector:
     matchLabels:
-      app: demo-app
+      app: demo-yu-app
   replicas: 2
   strategy:
     type: RollingUpdate
@@ -16,10 +16,10 @@ spec:
   template:
     metadata:
       labels:
-        app: demo-app
+        app: demo-yu-app
     spec:
       containers:
-        - name: demo-con
+        - name: demo-yu-con
           image: idock.daumkakao.io/torres_yu/demo1
           imagePullPolicy: IfNotPresent
           ports:
@@ -44,7 +44,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: demo-svc
+  name: demo-yu-svc
 spec:
   ports:
     - port: 80
